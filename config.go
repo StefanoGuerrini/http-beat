@@ -28,16 +28,30 @@ func get() config {
 func readConfig() config {
 	yamlFile, err := ioutil.ReadFile("config.yaml")
 	if err != nil {
-		log.Fatalln("Error reading YAML file: %s\n", err)
+		log.Fatalln("read error: ", err)
 	}
 
 	var c config
 	err = yaml.Unmarshal(yamlFile, &c)
 	if err != nil {
-		log.Fatalln("Error parsing YAML file: %s\n", err)
+		log.Fatalln("unmarshal error: ", err)
 	}
 
 	return c
+}
+
+func writeConfig(c config) {
+	d, err := yaml.Marshal(&c)
+	if err != nil {
+		log.Fatalf("marshal error: ", err)
+	}
+
+	err = ioutil.WriteFile("config.yaml", d, 0644)
+	if err != nil {
+		log.Fatalln("write error:", err)
+	}
+
+	instance = readConfig()
 }
 
 func GetUrls() []string {
@@ -46,4 +60,18 @@ func GetUrls() []string {
 
 func GetBeatSeconds() int {
 	return get().BeatSeconds
+}
+
+func AddUrls(urls []string) {
+	writeConfig(config{
+		Urls:        append(GetUrls(), urls...),
+		BeatSeconds: GetBeatSeconds(),
+	})
+}
+
+func SetBeatSeconds(seconds int) {
+	writeConfig(config{
+		Urls:        GetUrls(),
+		BeatSeconds: seconds,
+	})
 }
