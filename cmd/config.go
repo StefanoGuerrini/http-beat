@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/stefanoguerrini/http-beat/core"
 	"os"
 )
 
@@ -22,12 +23,12 @@ var (
 
 			seconds, _ := cmd.Flags().GetInt("seconds")
 			if seconds > 0 {
-				SetBeatSeconds(seconds)
+				core.SetBeatSeconds(seconds)
 			}
 
 			urls, _ := cmd.Flags().GetStringArray("urls")
 			if len(urls) > 0 {
-				AddUrls(urls)
+				core.AddUrls(urls)
 			}
 
 			get, _ := cmd.Flags().GetBool("get")

@@ -1,5 +1,5 @@
-beat_seconds: 30
-urls: 
-  - "https://google.com"
-  - "https://123example.sh"
-  - "https://github.com"
+beat_seconds: 44
+urls:
+- https://google.com
+- https://123example.sh
+- https://github.com

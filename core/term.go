@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	tm "github.com/buger/goterm"
