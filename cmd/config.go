@@ -33,8 +33,8 @@ var (
 
 			get, _ := cmd.Flags().GetBool("get")
 			if get {
-				fmt.Println(GetBeatSeconds())
-				fmt.Println(GetUrls())
+				fmt.Println(core.GetBeatSeconds())
+				fmt.Println(core.GetUrls())
 			}
 
 		},
