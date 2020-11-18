@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/stefanoguerrini/http-beat/cmd"
+	"http-beat/cmd"
 )
 
 func main() {

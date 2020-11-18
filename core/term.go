@@ -2,6 +2,7 @@ package core
 
 import (
 	tm "github.com/buger/goterm"
+	"sort"
 	"strconv"
 	"time"
 )
@@ -15,13 +16,20 @@ func Monitor() {
 
 		res := Check()
 
+		keys := make([]string, 0, len(res))
+		for k := range res {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+
 		x := 1
 		y := 3
 
 		tm.MoveCursor(x, y)
 
-		for key, val := range res {
-			tm.Printf(key)
+		for _, k := range keys {
+			val := res[k]
+			tm.Printf(k)
 			tm.MoveCursor(35, y)
 
 			color := tm.GREEN
