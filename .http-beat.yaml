@@ -1,0 +1,4 @@
+beat_seconds: 5
+urls:
+- https://google.com
+- https://github.com

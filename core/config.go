@@ -26,7 +26,7 @@ func get() config {
 }
 
 func readConfig() config {
-	yamlFile, err := ioutil.ReadFile("config.yaml")
+	yamlFile, err := ioutil.ReadFile(".http-beat.yaml")
 	if err != nil {
 		log.Fatalln("read error: ", err)
 	}
@@ -46,7 +46,7 @@ func writeConfig(c config) {
 		log.Fatalf("marshal error: ", err)
 	}
 
-	err = ioutil.WriteFile("config.yaml", d, 0644)
+	err = ioutil.WriteFile(".http-beat.yaml", d, 0644)
 	if err != nil {
 		log.Fatalln("write error:", err)
 	}
